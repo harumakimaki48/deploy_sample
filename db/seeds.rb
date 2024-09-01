@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Shop.create([
+    {  name: "Shop A",  opening_time: "09:00",  closing_time: "18:00",  holiday: "月曜日",
+  url: "https://shop-a.example.com" }
+])
