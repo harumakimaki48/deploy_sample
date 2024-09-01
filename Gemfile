@@ -37,12 +37,12 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # ransack
-gem 'ransack'
+gem "ransack"
 
 # sorcery
-gem 'sorcery'
+gem "sorcery"
 
-gem 'jquery-rails'
+gem "jquery-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
