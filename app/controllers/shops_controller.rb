@@ -1,23 +1,21 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:edit, :update, :destroy]
-
   def index
     @q = Shop.ransack(params[:q])
     @shops = @q.result(distinct: true)
 
     if params[:q] && params[:q][:tags_id_eq].present?
-      @shops = @shops.joins(:tags).where(tags: { id: params[:q][:tags_id_eq] })
+        @shops = @shops.joins(:tags).where(tags: { id: params[:q][:tags_id_eq] })
     end
-  end
+end
 
-  def new
+def new
     @shop = Shop.new
   end
 
   def create
     @shop = Shop.new(shop_params)
     if @shop.save
-      redirect_to shops_path, notice: "店舗が追加されました"
+      redirect_to admin_shops_path, notice: "店舗が追加されました"
     else
       render :new
     end
@@ -28,7 +26,7 @@ class ShopsController < ApplicationController
 
   def update
     if @shop.update(shop_params)
-      redirect_to shops_path, notice: "店舗情報が更新されました"
+      redirect_to admin_shops_path, notice: "店舗情報が更新されました"
     else
       render :edit
     end
@@ -36,7 +34,7 @@ class ShopsController < ApplicationController
 
   def destroy
     @shop.destroy
-    redirect_to shops_path, notice: "店舗が削除されました"
+    redirect_to admin_shops_path, notice: "店舗が削除されました"
   end
 
   private
@@ -46,6 +44,6 @@ class ShopsController < ApplicationController
   end
 
   def shop_params
-    params.require(:shop).permit(:name, :opening_time, :closing_time, :holiday, :url)
+    params.require(:shop).permit(:name, :opening_time, :closing_time, :holiday, :url) # 必要な属性を追加
   end
 end
